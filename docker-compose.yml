@@ -1,12 +1,24 @@
 version: "3.2"
 services:
   # Celery
-  # Redis
   # Flower
   # Webhook backend
+  backend:
+    image: redis:6.2-alpine
+    # https://github.com/compose-spec/compose-spec/blob/master/deploy.md#restart_policy
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 3s
+        max_attempts: 3
+        window: 120s
+    ports:
+      - "6379:6379"
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+
   webhook:
-    # depends_on:
-    #   - celery
+    depends_on:
+      - backend
     #   - flower
     #   - redis
     env_file:

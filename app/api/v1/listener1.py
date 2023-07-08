@@ -11,3 +11,11 @@ celery = Celery(
 @router.post("/")
 async def post_data():
     return {"msg": "Listener #1 webhook"}
+
+
+@celery.task
+def divide(x, y):
+    import time
+
+    time.sleep(5)
+    return x / y
