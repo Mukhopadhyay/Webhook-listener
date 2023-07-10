@@ -1,4 +1,5 @@
 import os
+import time
 from celery import Celery
 from datetime import datetime
 
@@ -11,5 +12,6 @@ def dummy_task():
     folder = "./tmp/celery"
     os.makedirs(folder, exist_ok=True)
     now = datetime.now().isoformat()
+    time.sleep(10)
     with open(f"{folder}/task-{now}.txt", "w") as f:
         f.write(f"hello @ {now}")
