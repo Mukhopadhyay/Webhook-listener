@@ -1,6 +1,11 @@
-site_name: My Docs
+site_name: FastAPI-Celery Webhook Listener
 site_author: Pranesh Mukhopadhyay
 site_description:
+
+nav:
+  - Home: "index.md"
+  - Concepts: "concepts.md"
+  - Getting Started: "getting-started.md"
 
 plugins:
   - search
