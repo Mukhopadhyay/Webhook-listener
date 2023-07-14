@@ -1,5 +1,6 @@
-from fastapi import APIRouter
 from celery import Celery
+from fastapi import APIRouter
+from modules.listener1.listener1_service import Listener1Service
 
 router = APIRouter(prefix="/listener1", tags=["Listener #1"])
 
@@ -10,6 +11,8 @@ celery = Celery(
 
 @router.post("/")
 async def post_data():
+    service = Listener1Service()
+    service.process()
     return {"msg": "Listener #1 webhook"}
 
 

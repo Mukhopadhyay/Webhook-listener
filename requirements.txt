@@ -3,3 +3,4 @@ fastapi==0.99.1
 redis==4.6.0
 uvicorn==0.22.0
 flower==2.0.0
+pydantic-settings==2.0.2
