@@ -6,7 +6,7 @@ from schemas.responses import CeleryTaskResponse
 from schemas.requests import WebhookRequest
 
 
-router = APIRouter(prefix="/listener1", tags=["Listener #1"])
+router = APIRouter(prefix="/listener1")
 
 
 def _to_taskout(r: AsyncResult) -> CeleryTaskResponse:
