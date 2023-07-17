@@ -1,3 +1,17 @@
+x-app-common: &app-common
+  build:
+    context: .
+    dockerfile: Dockerfile
+  volumes:
+    - ./app:/app
+  networks:
+    - default
+  restart: on-failure
+  env_file:
+    - .env
+  depends_on:
+    - redis
+
 version: "3.2"
 services:
   redis:
@@ -6,12 +20,28 @@ services:
     deploy:
       restart_policy:
         condition: on-failure
-        # delay: 3s
         max_attempts: 3
-        # window: 120s
     ports:
       - "6379:6379"
-    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    # command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    command: redis-server --save 20 1 --loglevel warning
+    networks:
+      - default
+
+  celery:
+    <<: *app-common
+    command: celery
+    depends_on:
+      - redis
+
+  webhook:
+    <<: *app-common
+    command: fastapi
+    ports:
+      - 9000:8000
+    depends_on:
+      - redis
+      - celery
 
   flower:
     image: mher/flower:0.9.7
@@ -21,23 +51,8 @@ services:
     depends_on:
       - redis
       - webhook
-
-  webhook:
-    depends_on:
-      - redis
-    env_file:
-      - .env
-    ports:
-      - "9000:8000"
-    container_name: webhook
-    restart: on-failure
     networks:
       - default
-    volumes:
-      - ./app:/app
-    build:
-      context: .
-      dockerfile: Dockerfile
 
   # nginx:
   #   image: nginx:latest

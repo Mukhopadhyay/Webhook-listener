@@ -3,7 +3,8 @@ import time
 from celery import Celery
 from datetime import datetime
 
-redis_url = os.getenv("REDIS_URL", "redis://localhost:6379")
+redis_url = os.getenv("REDIS_URL", "redis://localhost:6479")
+# redis_url = os.getenv("REDIS_URL")
 app = Celery(__name__, broker=redis_url, backend=redis_url)
 
 

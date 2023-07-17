@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+from typing import Dict, Any
 
 
 class BaseService(metaclass=ABCMeta):
@@ -8,5 +9,5 @@ class BaseService(metaclass=ABCMeta):
     @abstractmethod
     def process(
         self,
-    ) -> None:
+    ) -> Dict[str, Any]:
         pass
