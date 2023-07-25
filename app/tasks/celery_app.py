@@ -13,10 +13,8 @@ R_PORT = os.getenv("REDIS_PORT")
 
 REDIS_URL = "redis://{}:{}/0".format(R_HOST, R_PORT)
 
-# print("REDIS_URL", REDIS_URL)
 
 app = Celery(__name__, broker=REDIS_URL, backend=REDIS_URL)
-# app.autodiscover_tasks(["listener1"])
 
 
 @app.task
