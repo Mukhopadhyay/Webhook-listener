@@ -1,15 +1,18 @@
 FROM python:3.10-slim
 
 COPY /requirements.txt /requirements.txt
+COPY /requirements.dev.txt /requirements.dev.txt
 COPY /requirements.doc.txt /requirements.doc.txt
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN pip install -r requirements.dev.txt
 RUN pip install -r requirements.doc.txt
 
 WORKDIR $WORKDIR
 
 COPY ./app .
+COPY ./tests/load/locustfile.py .
 
 COPY ./scripts/entrypoint.sh ..
 RUN chmod +x  ../entrypoint.sh

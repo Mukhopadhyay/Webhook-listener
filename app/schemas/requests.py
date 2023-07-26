@@ -9,4 +9,5 @@ from pydantic import BaseModel
 
 
 class WebhookRequest(BaseModel):
+    message: Optional[str] = None
     delay: Optional[int] = settings.REPO_DELAY

@@ -18,8 +18,9 @@ app = Celery(__name__, broker=REDIS_URL, backend=REDIS_URL)
 
 
 @app.task
-def listener1_task1(delay: Optional[int] = None) -> object:
+def listener1_task1(
+    delay: Optional[int] = None, message: Optional[str] = None
+) -> object:
     service = Listener1Service()
-    response = service.process(delay=delay)
-    # print("Response:", response)
+    response = service.process(delay=delay, message=message)
     return response

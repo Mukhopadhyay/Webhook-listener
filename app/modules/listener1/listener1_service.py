@@ -8,7 +8,10 @@ class Listener1Service(BaseService):
         super().__init__()
         self.repository = Listener1Repository()
 
-    def process(self, delay: Optional[int] = None) -> Dict[str, Any]:
+    def process(
+        self, delay: Optional[int] = None, message: Optional[str] = None
+    ) -> Dict[str, Any]:
+        _ = message
         result = self.repository.create(delay=delay)
         print("RESULT:", result)
         return result
