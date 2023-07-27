@@ -6,6 +6,11 @@ class BaseService(metaclass=ABCMeta):
     def __init__(self) -> None:
         pass
 
+
+class BaseProcessService(BaseService, metaclass=ABCMeta):
+    def __init__(self) -> None:
+        pass
+
     @abstractmethod
     def process(
         self,

@@ -6,6 +6,7 @@ uvicorn==0.22.0
 flower==2.0.0
 pydantic-settings
 gunicorn==20.1.0
+requests==2.31.0
 # Development / testing dependencies
 black==23.3.0
 locust==2.15.1

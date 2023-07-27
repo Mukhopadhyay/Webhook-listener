@@ -1,3 +1,5 @@
+# docker-compose -f docker-compose.loadtest.yml up --build
+
 x-app-common: &app-common
   build:
     context: .
