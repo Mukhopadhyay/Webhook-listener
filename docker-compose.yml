@@ -38,7 +38,7 @@ services:
     <<: *app-common
     command: fastapi
     ports:
-      - 9000:8000
+      - 8000:8000
     depends_on:
       - redis
       - celery
@@ -54,14 +54,14 @@ services:
     networks:
       - default
 
-  # nginx:
-  #   image: nginx:latest
-  #   volumes:
-  #     - ./nginx.conf:/etc/nginx/nginx.conf
-  #     - ./htpasswd:/etc/nginx/.htpasswd
-  #   ports:
-  #     - 80:80
-  #   depends_on:
-  #     - flower
-  #   networks:
-  #     - default
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./htpasswd:/etc/nginx/.htpasswd
+    ports:
+      - 80:80
+    depends_on:
+      - flower
+    networks:
+      - default

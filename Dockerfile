@@ -7,6 +7,13 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install -r requirements.doc.txt
 
+# Documentation
+COPY ./mkdocs.yml .
+COPY ./docs .
+
+# Build documentation
+RUN python3 -m mkdocs build
+
 WORKDIR $WORKDIR
 
 COPY ./app .

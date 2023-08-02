@@ -1,6 +1,7 @@
 site_name: FastAPI-Celery Webhook Listener
 site_author: Pranesh Mukhopadhyay
 site_description:
+site_dir: documentation
 
 nav:
   - Home: "index.md"

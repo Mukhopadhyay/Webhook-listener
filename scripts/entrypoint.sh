@@ -6,6 +6,7 @@ set -e
 sleep 5
 
 WORKERS=${WORKERS:-1}
+PORT=${PORT:-8000}
 LOG_LEVEL=${LOG_LEVEL:-INFO}
 MODE=${MODE:-development}
 
@@ -21,9 +22,9 @@ elif [[ "$1" == "fastapi" ]]; then
     echo "Running in '$MODE' mode"
     if [[ $MODE == "development" ]]; then
         # Change this to Gunicorn based on the ENV var
-        python3 -m uvicorn app.app:app --port 8000 --host 0.0.0.0 --reload
+        python3 -m uvicorn app.app:app --port $PORT --host 0.0.0.0 --reload
     elif [[ $MODE == "production" ]]; then
-        python3 -m gunicorn --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 -w $WORKERS app.app:app --log-level $LOG_LEVEL
+        python3 -m gunicorn --worker-class uvicorn.workers.UvicornWorker --bind "0.0.0.0:${PORT}" -w $WORKERS app.app:app --log-level $LOG_LEVEL
     fi
 else
     echo "Unknown or missing sub-command: '$1'"
