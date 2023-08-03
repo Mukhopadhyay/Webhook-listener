@@ -1,8 +1,8 @@
-# Concepts
+# Concepts involving Webhooks
 
 ## What is a webhook?
 
-A webhook is a HTTP-based callback function that allows lightweight, event-driven communication between 2 application programming interfaces (APIs). Webhooks are used by a wide variety of web apps to receive small amounts of data from other apps, but webhooks can also be used to trigger automation workflows in GitOps environments.
+A **webhook** is a method of augmenting or altering the behavior of a web page or web application with custom callbacks. These callbacks may be maintained, modified, and managed by third-party users and developers who may not necessarily be affiliated with the originating website or application. The term "webhook" was coined by **_Jeff Lindsay_** in 2007 from the computer programming term hook.
 
 ## How are Webhooks different?
 
@@ -14,6 +14,9 @@ The name webhook is a simple combination of web, referring to its HTTP-based com
 
 IT teams use a variety of methods to protect apps that communicate via webhooks. Most webhook-enabled apps add a secret key to the request header of the payload, so that the client can confirm the server’s identity. Webhooks are often protected with Mutual Transport Layer Security (mTLS) authentication, which verifies both client and server before the payload is sent. It is also common for client apps to use SSL encryption for the webhook URL, to ensure the transferred data remains private.
 
+## Examples
+
 ## References
 
+- [Webhook - Wikipedia](https://en.wikipedia.org/wiki/Webhook)
 - [What is a webhook - RedHat](https://www.redhat.com/en/topics/automation/what-is-a-webhook)

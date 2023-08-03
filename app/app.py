@@ -1,4 +1,6 @@
 from api import router
+from configs import settings
+
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.openapi.utils import get_openapi
@@ -26,12 +28,13 @@ def custom_openapi():
 
 app.openapi = custom_openapi
 
-# Adding mkdocs documentation route
-try:
-    app.mount(
-        "/documentation",
-        StaticFiles(directory="../documentation", html=True),
-        name="documentation",
-    )
-except Exception as err:
-    print("[FastAPI] Documentation not built!")
+if settings.HOST_DOCS:
+    # Adding mkdocs documentation route
+    try:
+        app.mount(
+            "/documentation",
+            StaticFiles(directory="../documentation", html=True),
+            name="documentation",
+        )
+    except Exception as err:
+        print("[FastAPI] Documentation not built!")

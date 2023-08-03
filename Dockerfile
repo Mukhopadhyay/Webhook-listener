@@ -9,7 +9,7 @@ RUN pip install -r requirements.doc.txt
 
 # Documentation
 COPY ./mkdocs.yml .
-COPY ./docs .
+COPY ./docs ./docs
 
 # Build documentation
 RUN python3 -m mkdocs build
