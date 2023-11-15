@@ -6,7 +6,6 @@ site_dir: documentation
 nav:
   - Home: "index.md"
   - Concepts: "concepts.md"
-  - Getting Started: "getting-started.md"
 
 plugins:
   - search
